@@ -1,8 +1,8 @@
 cask "firefox-esr" do
-  version "115.3.1"
+  version "115.12.0"
 
   language "en", default: true do
-    sha256 "9c9659c3c7d9062a5fd55cea1e7237cb2b36da900c341508fc2a19f91259780e"
+    sha256 "afbfcc66fc68bccade671fab76e3b2cb938477275f31dd9172372116aa2b5c12"
     "en-US"
   end
 
