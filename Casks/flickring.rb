@@ -1,20 +1,28 @@
 # Homebrew Cask file for FlickRing
 
 cask 'flickring' do
-  version :latest # We'll use the latest version
+  version :latest # workaround to support the FlickRing-latest.zip build target
+  # version "1.2.3"
+
 
   language "en", default: true do
-    sha256 "a683b83736ce6800aaca53581519353acc315722eda9294d005404b805814c40"
+    sha256 :no_check # workaround to support the FlickRing-latest.zip build target
+    # This below would be ideal, since it guarantees the file integrity and security.
+    # sha256 "a683b83736ce6800aaca53581519353acc315722eda9294d005404b805814c40"
     "en-US"
   end
 
-  url 'https://flick-ring-updates.s3.amazonaws.com/FlickRing-latest.zip'
+  # Assuming flick-ring-updates.s3.amazonaws.com is owned and trusted by the project owner, this is needed to
+  # work around the `sha256 :no_check` security audit.
+  url 'https://flick-ring-updates.s3.amazonaws.com/FlickRing-latest.zip', verified: "flick-ring-updates.s3.amazonaws.com"
   name 'FlickRing'
   homepage 'https://github.com/mikker/FlickRing.app'
 
+  auto_updates true
+
   app 'FlickRing.app'
 
-  # Accessibility permission prompt
+  # Accessibility and Input Monitoring permission prompt
   postflight do
     accessibility_api_prompt = <<~EOS
       FlickRing requires both Accessibility API, Input Monitoring API permissions and a restart.
