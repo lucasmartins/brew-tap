@@ -17,15 +17,26 @@ cask 'flickring' do
   # Accessibility permission prompt
   postflight do
     accessibility_api_prompt = <<~EOS
-      FlickRing requires Accessibility API permissions.
-      Please follow these steps to enable it:
+      FlickRing requires both Accessibility API, Input Monitoring API permissions and a restart.
+
+      A) To add Accessibility API permission:
        1. Open System Preferences
        2. Go to Privacy & Security
        3. Select Accessibility from the right sidebar
        4. Click the + button on the bottom of the app list (you might be promted for the user's password)
        5. Select FlickRing and click "Open".
        6. You should see FlickRing now on the Accessibility list, with it's toggle ON.
-       7. Quit FlickRing and reopen it again.
+
+      B) To add Input Monitoring API permission:
+       1. Open System Preferences
+       2. Go to Privacy & Security
+       3. Select Input Monitoring from the right sidebar
+       4. Click the + button on the bottom of the app list (you might be promted for the user's password)
+       5. Select FlickRing and click "Open".
+       6. You should see FlickRing now on the Input Monitoring list, with it's toggle ON.
+
+      C) If have run FlickRing before manually adding the permissions above, quit it and reopen it.
+
     EOS
 
     puts accessibility_api_prompt
@@ -41,6 +52,12 @@ cask 'flickring' do
   uninstall script: {
               executable: "/usr/bin/tccutil",
               args:       ["reset", "Accessibility", "com.brnbw.FlickRing"],
+              sudo:       true
+            }
+
+  uninstall script: {
+              executable: "/usr/bin/tccutil",
+              args:       ["reset", "InputMonitoring", "com.brnbw.FlickRing"],
               sudo:       true
             }
 end
