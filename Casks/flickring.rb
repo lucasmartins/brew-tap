@@ -57,7 +57,7 @@ cask 'flickring' do
 
   uninstall script: {
               executable: "/usr/bin/tccutil",
-              args:       ["reset", "InputMonitoring", "com.brnbw.FlickRing"],
+              args:       ["reset", "ListenEvent", "com.brnbw.FlickRing"],
               sudo:       true
             }
 end
