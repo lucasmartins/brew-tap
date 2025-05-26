@@ -37,4 +37,10 @@ cask 'flickring' do
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.brnbw.flickring.sfl3",
     "~/Library/Containers/com.brnbw.FlickRing"
   ]
+
+  uninstall script: {
+              executable: "/usr/bin/tccutil",
+              args:       ["reset", "Accessibility", "com.brnbw.FlickRing"],
+              sudo:       true
+            }
 end
