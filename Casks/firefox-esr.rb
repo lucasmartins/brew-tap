@@ -1,8 +1,8 @@
 cask "firefox-esr" do
-  version "115.12.0"
+  version "128.10.1"
 
   language "en", default: true do
-    sha256 "afbfcc66fc68bccade671fab76e3b2cb938477275f31dd9172372116aa2b5c12"
+    sha256 "d422ae4b858cf531e476193dbe6cd689562d8e266200fb37c250db8c7474bf0b"
     "en-US"
   end
 
@@ -18,8 +18,6 @@ cask "firefox-esr" do
   livecheck do
     url "https://download.mozilla.org/?product=firefox-esr-latest&os=osx&lang=en-US"
     strategy :header_match
-    # regex(/releases\/(.*)esr\//i)
-    # https://download-installer.cdn.mozilla.net/pub/firefox/releases/115.3.1esr/mac/en-US/Firefox%20115.3.1esr.dmg
   end
 
   app "Firefox.app"
